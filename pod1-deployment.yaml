@@ -20,3 +20,14 @@ spec:
           ports:
             - name: my-ws-port-1
               containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: my-ws-port-1
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
