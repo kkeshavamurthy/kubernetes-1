@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-server-dep
+  labels:
+    app: my-web-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-web-server
+  template:
+    metadata:
+      labels:
+        app: my-web-server
+    spec:
+      containers:
+        - name:  my-web-server
+          image: kkeshavamurthy/alpine-nginx-for-kubernetes:v2
+          ports:
+            - name: my-ws-port-1
+              containerPort: 80
