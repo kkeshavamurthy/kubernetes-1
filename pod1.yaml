@@ -7,6 +7,14 @@ metadata:
 spec:
   containers:
     - name: my-web-server
-      image: kkeshavamurthy/alpine-nginx
+      image: kkeshavamurthy/alpine-nginx-for-kubernetes:v1
       ports:
         - containerPort: 80
+      volumeMounts:
+        - name: my-ws-secret-volume
+          mountPath: "/etc/creds"
+          readOnly: true
+  volumes:
+    - name: my-ws-secret-volume
+      secret:
+        secretName: my-ws-secret

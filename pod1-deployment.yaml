@@ -31,3 +31,11 @@ spec:
               port: 80
             initialDelaySeconds: 5
             periodSeconds: 10
+          volumeMounts:
+            - name: my-ws-secret-volume
+              mountPath: "/etc/creds"
+              readOnly: true
+      volumes:
+        - name: my-ws-secret-volume
+          secret:
+            secretName: my-ws-secret
